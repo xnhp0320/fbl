@@ -1,0 +1,5 @@
+executable("my_fbl") {
+    cflags_cc = [ "-std=c++17" ]
+    sources = [ "source.cc" ]
+    deps = [ "//fbl", "//fit", "//stdcompat", "//public", "//zx-panic-libc" ]
+}
