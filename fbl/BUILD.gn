@@ -76,7 +76,7 @@ static_library("fbl") {
   deps += [ "//public" ]
 }
 
-#group("tests") {
-#  testonly = true
-#  deps = [ "test:tests" ]
-#}
+group("tests") {
+  testonly = true
+  deps = [ "test:tests" ]
+}
