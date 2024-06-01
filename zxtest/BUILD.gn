@@ -78,6 +78,15 @@ zxtest_deps = [
   "//public",
 ]
 
+config("Wno-vla-cxx-extension") {
+    #this is only for clang
+    cflags_cc = [
+    # TODO(https://fxbug.dev/42084851): Remove -Wno-unknown-warning-option after the next Clang roll.
+    "-Wno-unknown-warning-option",
+    "-Wno-vla-cxx-extension",
+    ]
+}
+
 source_set("zxtest") {
   public = zxtest_headers
   sources = zxtest_sources
@@ -87,7 +96,7 @@ source_set("zxtest") {
 
     # TODO(https://fxbug.dev/42085293): zxtest headers use VLA, rather than suppressing
     # every use of zxtest headers of which there are many, we suppress it here.
-    #"//build/config:Wno-vla-cxx-extension",
+    ":Wno-vla-cxx-extension",
   ]
   deps = zxtest_deps
 }
@@ -102,7 +111,7 @@ source_set("zxtest-streams") {
 
     # TODO(https://fxbug.dev/42085293): zxtest headers use VLA, rather than suppressing
     # every use of zxtest headers of which there are many, we suppress it here.
-    #"//build/config:Wno-vla-cxx-extension",
+    ":Wno-vla-cxx-extension",
   ]
   deps = zxtest_deps
 }
